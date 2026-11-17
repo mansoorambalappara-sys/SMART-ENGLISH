@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ml"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vidyamithram Smart English</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;600;800&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Anek Malayalam","Noto Sans Malayalam","Comic Sans MS",system-ui,sans-serif;background:linear-gradient(160deg,#ffe29f,#ffa99f 45%,#a1c4fd);min-height:100vh;color:#2b2d42}
+#app{max-width:760px;margin:auto;padding:14px}
+h1{margin:6px 0;text-align:center;font-size:30px;color:#fff;text-shadow:0 3px 0 #e63946,0 6px 10px #0004;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-1deg)}}
+.top{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.btn{border:0;border-radius:16px;padding:10px 16px;font:inherit;font-weight:700;background:#fff;box-shadow:0 5px 0 #0003;cursor:pointer;transition:.1s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #0003}
+.star{background:#fff;border-radius:20px;padding:6px 14px;font-weight:800;box-shadow:0 4px 0 #0002}
+.lv{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.lv button{border:0;border-radius:14px;padding:8px 12px;font:inherit;font-weight:700;background:#ffffffaa;cursor:pointer}
+.lv button.on{background:#7b2ff7;color:#fff;transform:scale(1.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;perspective:900px;margin-top:10px}
+.menu{border:0;border-radius:24px;padding:22px 8px;font:inherit;font-weight:800;font-size:17px;color:#fff;cursor:pointer;box-shadow:0 9px 0 #0003,0 14px 18px #0003;transform:rotateX(8deg);transition:.2s}
+.menu:hover{transform:rotateX(0) rotateY(-6deg) translateY(-4px) scale(1.04)}
+.menu span{display:block;font-size:46px;animation:bob 2.4s infinite}
+.card{background:#fff;border-radius:20px;padding:12px;text-align:center;box-shadow:0 6px 0 #0002;cursor:pointer;transition:.25s;transform-style:preserve-3d}
+.card:hover{transform:rotateY(14deg) rotateX(-6deg) scale(1.05)}
+.card .e{font-size:44px}.card b{font-size:20px;display:block}.card small{color:#666}
+.big{background:#fff;border-radius:28px;padding:20px;text-align:center;box-shadow:0 10px 0 #0003;margin:12px 0}
+.big .e{font-size:110px;display:inline-block;animation:spin 3s ease-in-out infinite}
+@keyframes spin{0%,100%{transform:rotateY(-25deg)}50%{transform:rotateY(25deg) translateY(-8px)}}
+.big .l{font-size:70px;font-weight:900;color:#e63946;text-shadow:0 4px 0 #ffb703}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.opt{border:0;border-radius:20px;padding:16px;font:inherit;font-size:22px;font-weight:800;background:#fff;box-shadow:0 7px 0 #0003;cursor:pointer;transition:.15s}
+.opt:active{transform:translateY(5px);box-shadow:0 2px 0 #0003}
+.opt.ok{background:#38b000;color:#fff;animation:pop .4s}.opt.no{background:#e63946;color:#fff;animation:shake .4s}
+@keyframes pop{50%{transform:scale(1.15)}}@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.row{display:flex;gap:8px;align-items:center;background:#fff;border-radius:18px;padding:10px 12px;margin:10px 0;box-shadow:0 5px 0 #0002}
+.row .t{flex:1}.row .t b{font-size:19px;display:block}.row .t small{color:#555}
+.row .btn{padding:8px 12px;box-shadow:0 4px 0 #0003;background:#ffd166}
+.tiles{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.tile{width:54px;height:60px;border-radius:14px;border:0;font:inherit;font-size:28px;font-weight:900;background:#4cc9f0;color:#fff;box-shadow:0 6px 0 #0003;cursor:pointer}
+.slot{width:54px;height:60px;border-radius:14px;background:#fff8;border:3px dashed #7b2ff7;font-size:30px;font-weight:900;display:flex;align-items:center;justify-content:center;color:#7b2ff7}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;perspective:900px}
+.fl{height:90px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer}
+.fl.on{transform:rotateY(180deg)}
+.fl div{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;font-weight:800;text-align:center;box-shadow:0 5px 0 #0003}
+.fl .f{background:linear-gradient(135deg,#7b2ff7,#f107a3);color:#fff;font-size:34px}
+.fl .b{background:#fff;transform:rotateY(180deg);font-size:15px;flex-direction:column}
+.fl.done .b{background:#caffbf}
+.msg{text-align:center;font-weight:800;font-size:20px;min-height:30px}
+.sc{border-radius:28px;padding:14px;text-align:center;color:#fff;box-shadow:0 8px 0 #0003;margin:8px 0}
+.ch{font-size:84px;display:inline-block;animation:bob 1.8s ease-in-out infinite;filter:drop-shadow(0 6px 4px #0004)}
+.bb{max-width:85%;padding:10px 14px;border-radius:20px;margin:8px 0;background:#fff;font-weight:700;font-size:18px;box-shadow:0 4px 0 #0002;cursor:pointer;transition:.2s}
+.bb.r{margin-left:auto;background:#caffbf}.bb.hl{transform:scale(1.06);background:#ffd166}
+.bb small{display:block;color:#555;font-weight:400;font-size:14px}
+.mas{text-align:center;font-size:46px;cursor:pointer}.mas span{display:inline-block;animation:bob 1.6s infinite}
+</style></head><body><div id="app"></div>
+<script>
+var A=[["A","Apple","🍎"],["B","Ball","⚽"],["C","Cat","🐱"],["D","Dog","🐶"],["E","Egg","🥚"],["F","Fish","🐟"],["G","Goat","🐐"],["H","Hat","🎩"],["I","Ice cream","🍦"],["J","Jug","🏺"],["K","Kite","🪁"],["L","Lion","🦁"],["M","Moon","🌙"],["N","Nest","🪺"],["O","Orange","🍊"],["P","Parrot","🦜"],["Q","Queen","👸"],["R","Rabbit","🐰"],["S","Sun","☀️"],["T","Tree","🌳"],["U","Umbrella","☂️"],["V","Van","🚐"],["W","Watch","⌚"],["X","Xylophone","🎹"],["Y","Yo-yo","🪀"],["Z","Zebra","🦓"]];
+var W=[A.map(function(a){return[a[1],a[2],""]}),
+[["Red","🔴","ചുവപ്പ്"],["Blue","🔵","നീല"],["Green","🟢","പച്ച"],["Yellow","🟡","മഞ്ഞ"],["Mother","👩","അമ്മ"],["Father","👨","അച്ഛൻ"],["Book","📚","പുസ്തകം"],["Bag","🎒","ബാഗ്"],["Pen","🖊️","പേന"],["Cow","🐄","പശു"],["Duck","🦆","താറാവ്"],["Boy","👦","ആൺകുട്ടി"]],
+[["Eye","👁️","കണ്ണ്"],["Nose","👃","മൂക്ക്"],["Hand","✋","കൈ"],["Foot","🦶","കാൽ"],["Banana","🍌","വാഴപ്പഴം"],["Mango","🥭","മാങ്ങ"],["Grapes","🍇","മുന്തിരി"],["Milk","🥛","പാൽ"],["Bus","🚌","ബസ്"],["Car","🚗","കാർ"],["Bird","🐦","പക്ഷി"],["Star","⭐","നക്ഷത്രം"]],
+[["School","🏫","സ്കൂൾ"],["Teacher","🧑‍🏫","ടീച്ചർ"],["Clock","🕐","ക്ലോക്ക്"],["House","🏠","വീട്"],["Flower","🌸","പൂവ്"],["Rain","🌧️","മഴ"],["Bicycle","🚲","സൈക്കിൾ"],["Train","🚆","തീവണ്ടി"],["Doctor","🧑‍⚕️","ഡോക്ടർ"],["Garden","🌷","തോട്ടം"],["Water","💧","വെള്ളം"],["Table","🪑","മേശ"]],
+[["Elephant","🐘","ആന"],["Butterfly","🦋","പൂമ്പാറ്റ"],["Mountain","⛰️","മല"],["River","🏞️","പുഴ"],["Rainbow","🌈","മഴവില്ല്"],["Airplane","✈️","വിമാനം"],["Computer","💻","കമ്പ്യൂട്ടർ"],["Library","📖","ലൈബ്രറി"],["Kitchen","🍳","അടുക്കള"],["Festival","🎉","ഉത്സവം"],["Football","⚽","ഫുട്ബോൾ"],["Rocket","🚀","റോക്കറ്റ്"]]];
+var S=[[["Hello!","ഹലോ!"],["Good morning","സുപ്രഭാതം"],["Thank you","നന്ദി"],["Bye bye","ടാറ്റാ"],["Sit down","ഇരിക്കൂ"]],
+[["What is your name?","നിന്റെ പേര് എന്താണ്?"],["My name is Anu.","എന്റെ പേര് അനു."],["How are you?","സുഖമാണോ?"],["I am fine.","എനിക്ക് സുഖമാണ്."],["Good night","ശുഭരാത്രി"]],
+[["This is my book.","ഇത് എന്റെ പുസ്തകമാണ്."],["I like mango.","എനിക്ക് മാങ്ങ ഇഷ്ടമാണ്."],["May I come in?","ഞാൻ അകത്തു വരട്ടെ?"],["Please sit down.","ദയവായി ഇരിക്കൂ."],["I have a pen.","എന്റെ കയ്യിൽ ഒരു പേനയുണ്ട്."]],
+[["Where is my bag?","എന്റെ ബാഗ് എവിടെ?"],["It is on the table.","അത് മേശപ്പുറത്താണ്."],["May I drink water?","ഞാൻ വെള്ളം കുടിക്കട്ടെ?"],["I go to school by bus.","ഞാൻ ബസിൽ സ്കൂളിൽ പോകുന്നു."],["What is the time?","സമയം എത്രയായി?"]],
+[["What did you do yesterday?","ഇന്നലെ നീ എന്തു ചെയ്തു?"],["I played with my friends.","ഞാൻ കൂട്ടുകാരുമായി കളിച്ചു."],["Can you help me, please?","ദയവായി എന്നെ സഹായിക്കാമോ?"],["I want to be a doctor.","എനിക്ക് ഡോക്ടർ ആകണം."],["Let us go to the library.","നമുക്ക് ലൈബ്രറിയിൽ പോകാം."]]];
+var LN=["പ്രീ-പ്രൈമറി","ക്ലാസ് 1","ക്ലാസ് 2","ക്ലാസ് 3","ക്ലാസ് 4"];
+var lv=0,stars=0,app=document.getElementById("app"),ac;
+function $(h){app.innerHTML=h}
+function rnd(a){return a[Math.floor(Math.random()*a.length)]}
+function shuf(a){return a.slice().sort(function(){return Math.random()-.5})}
+function say(t,r){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=r||.8;u.pitch=1.15;speechSynthesis.speak(u)}catch(e){}}
+function snd(f,d){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;o.type="triangle";g.gain.value=.15;o.connect(g);g.connect(ac.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+(d||.25));o.stop(ac.currentTime+(d||.25))}catch(e){}}
+function good(){snd(660);setTimeout(function(){snd(880)},120);setTimeout(function(){snd(1100)},240);stars++;upd()}
+function bad(){snd(180,.35)}
+function upd(){var s=document.getElementById("st");if(s)s.textContent="⭐ "+stars}
+function bar(t){return '<div class="top"><button class="btn" onclick="home()">🏠 ഹോം</button><b>'+t+'</b><span class="star" id="st">⭐ '+stars+'</span></div>'}
+function home(){var m=[["🔤","അക്ഷരങ്ങൾ","alpha","#ef476f"],["📖","പുതിയ വാക്കുകൾ","words","#06a77d"],["💬","സംഭാഷണം","talk","#f77f00"],["🎯","ക്വിസ്","quiz","#7b2ff7"],["✏️","സ്പെല്ലിംഗ്","spell","#0077b6"],["🃏","മെമ്മറി ഗെയിം","mem","#d62828"]];
+var h='<h1>🌈 Vidyamithram<br>Smart English 🌈</h1><div class="mas" onclick="say(\'Hello friends! Let us learn English!\')"><span>🐘</span><span style="animation-delay:.3s">🦁</span><span style="animation-delay:.6s">🐵</span><span style="animation-delay:.9s">🐼</span></div><div class="lv">';
+LN.forEach(function(n,i){h+='<button class="'+(i==lv?"on":"")+'" onclick="lv='+i+';home()">'+n+'</button>'});
+h+='</div><div class="top"><span></span><span class="star" id="st">⭐ '+stars+'</span></div><div class="grid">';
+m.forEach(function(x){h+='<button class="menu" style="background:'+x[3]+'" onclick="'+x[2]+'()"><span>'+x[0]+'</span>'+x[1]+'</button>'});
+$(h+'</div>');}
+function alpha(){var h=bar("🔤 ABC")+'<div id="ab"></div><div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(70px,1fr))">';
+A.forEach(function(a,i){h+='<div class="card" onclick="show('+i+')"><b style="font-size:28px">'+a[0]+a[0].toLowerCase()+'</b></div>'});$(h+'</div>');show(0)}
+function show(i){var a=A[i];document.getElementById("ab").innerHTML='<div class="big"><div class="l">'+a[0]+' '+a[0].toLowerCase()+'</div><div class="e">'+a[2]+'</div><h2>'+a[0]+' for '+a[1]+'</h2><button class="btn" onclick="say(\''+a[0]+'. '+a[0]+' for '+a[1]+'\')">🔊 കേൾക്കൂ</button></div>';say(a[0]+". "+a[0]+" for "+a[1]);snd(520)}
+function words(){var h=bar("📖 "+LN[lv])+'<div class="grid">';W[lv].forEach(function(w){h+='<div class="card" onclick="say(\''+w[0]+'\');snd(500)"><div class="e">'+w[1]+'</div><b>'+w[0]+'</b><small>'+w[2]+'</small></div>'});$(h+'</div>')}
+function talkOld(){var h=bar("💬 "+LN[lv])+'<div class="msg">🔊 കേൾക്കൂ, 🎤 പറയൂ!</div><div id="rs" class="msg"></div>';
+S[lv].forEach(function(s,i){h+='<div class="row"><div class="t"><b>'+s[0]+'</b><small>'+s[1]+'</small></div><button class="btn" onclick="say(S[lv]['+i+'][0])">🔊</button><button class="btn" onclick="listen('+i+')">🎤</button></div>'});$(h)}
+function listen(i){var R=window.SpeechRecognition||window.webkitSpeechRecognition,r=document.getElementById("rs");
+if(!R){r.textContent="ഈ ഫോണിൽ മൈക്ക് സൗകര്യം ഇല്ല. കേട്ട് ഉറക്കെ പറഞ്ഞു പഠിക്കൂ 😊";return}
+var c=new R();c.lang="en-US";r.textContent="🎤 പറയൂ...";
+c.onresult=function(e){var t=e.results[0][0].transcript.toLowerCase().replace(/[^a-z ]/g,""),w=S[lv][i][0].toLowerCase().replace(/[^a-z ]/g,"").split(" "),n=0;
+w.forEach(function(x){if(t.indexOf(x)>-1)n++});var p=n/w.length;
+if(p>=.7){r.textContent="🌟 സൂപ്പർ! "+t;good()}else{r.textContent="🙂 ഒന്നുകൂടി ശ്രമിക്കൂ: "+t;bad()}};
+c.onerror=function(){r.textContent="മൈക്ക് അനുവദിക്കൂ, വീണ്ടും ശ്രമിക്കൂ"};c.start()}
+var qn=0,qa;
+var qm=0;
+function quiz(){$(bar("🎯 ക്വിസ്")+'<div class="grid"><button class="menu" style="background:#06a77d" onclick="qs(0)"><span>👀</span>കണ്ടു പറയൂ</button><button class="menu" style="background:#f77f00" onclick="qs(1)"><span>👂</span>കേട്ടു തൊടൂ</button></div>')}
+function qs(m){qm=m;qn=0;qa=shuf(W[lv]).slice(0,10);qq()}
+function qq(){if(qn>=10)return fin("🎯");var w=qa[qn],hear=qm==1,o=shuf([w].concat(shuf(W[lv].filter(function(x){return x!=w})).slice(0,3)));
+var h=bar("🎯 ചോദ്യം "+(qn+1)+"/10")+'<div class="big">';
+if(hear){h+='<div class="e">🔊</div><h2>കേട്ടിട്ട് ശരിയായ ചിത്രം തൊടൂ</h2><button class="btn" onclick="say(\''+w[0]+'\')">🔊 വീണ്ടും</button></div><div class="opts">';
+o.forEach(function(x){h+='<button class="opt" style="font-size:54px" onclick="ans(this,'+(x==w)+')">'+x[1]+'</button>'})}
+else{h+='<div class="e">'+w[1]+'</div><h2>ഇത് എന്താണ്?</h2></div><div class="opts">';
+o.forEach(function(x){h+='<button class="opt" onclick="ans(this,'+(x==w)+')">'+x[0]+'</button>'})}
+$(h+'</div>');if(hear)say(w[0])}
+function ans(b,ok){if(ok){b.classList.add("ok");good();say(qa[qn][0]);qn++;setTimeout(qq,1100)}else{b.classList.add("no");bad()}}
+function fin(e){$(bar(e+" കഴിഞ്ഞു!")+'<div class="big"><div class="e">🏆</div><h2>അഭിനന്ദനങ്ങൾ! നിനക്ക് ⭐ '+stars+' ലഭിച്ചു</h2></div>');say("Well done! You are a star!")}
+var sp,sw,sf;
+function spell(){sp=shuf(W[lv].filter(function(x){return x[0].length<=8&&x[0].indexOf(" ")<0})).slice(0,6);qn=0;sn()}
+function sn(){if(qn>=sp.length)return fin("✏️");var w=sp[qn],t=w[0].toUpperCase();sw=t;sf="";
+var h=bar("✏️ സ്പെല്ലിംഗ് "+(qn+1)+"/"+sp.length)+'<div class="big"><div class="e">'+w[1]+'</div><br><button class="btn" onclick="say(\''+w[0]+'\')">🔊 '+(w[2]||"കേൾക്കൂ")+'</button></div><div class="tiles" id="sl"></div><div class="tiles" id="tl">';
+shuf(t.split("")).forEach(function(c,i){h+='<button class="tile" id="t'+i+'" onclick="pick(this,\''+c+'\')">'+c+'</button>'});$(h+'</div>');sl();say(w[0])}
+function sl(){var h="";for(var i=0;i<sw.length;i++)h+='<div class="slot">'+(sf[i]||"")+'</div>';document.getElementById("sl").innerHTML=h}
+function pick(b,c){if(c==sw[sf.length]){sf+=c;b.style.visibility="hidden";snd(600);sl();if(sf==sw){good();say(sp[qn][0]);qn++;setTimeout(sn,1300)}}else{bad();b.classList.add("no");setTimeout(function(){b.classList.remove("no")},400)}}
+var mf,mc;
+function mem(){var p=shuf(W[lv]).slice(0,6),c=[];p.forEach(function(w){c.push([w,"e"],[w,"w"])});c=shuf(c);mf=[];mc=0;
+var h=bar("🃏 ജോഡി കണ്ടെത്തൂ")+'<div class="mem">';
+c.forEach(function(x,i){h+='<div class="fl" data-w="'+x[0][0]+'" onclick="flip(this)"><div class="f">❓</div><div class="b">'+(x[1]=="e"?'<span style="font-size:36px">'+x[0][1]+'</span>':'<b style="font-size:17px">'+x[0][0]+'</b>')+'</div></div>'});$(h+'</div>')}
+function flip(e){if(mf.length>1||e.classList.contains("on"))return;e.classList.add("on");snd(450,.1);mf.push(e);
+if(mf.length==2){var a=mf[0],b=mf[1];if(a.dataset.w==b.dataset.w){a.classList.add("done");b.classList.add("done");say(a.dataset.w);good();mf=[];if(++mc==6)setTimeout(function(){fin("🃏")},900)}
+else{bad();setTimeout(function(){a.classList.remove("on");b.classList.remove("on");mf=[]},900)}}}
+var SC=[
+{n:"ക്ലാസ് റൂം",e:"🏫",c:"#ef476f",p:["👧","👩‍🏫"],l:[[1,"Good morning, class!","സുപ്രഭാതം, കുട്ടികളേ!"],[0,"Good morning, teacher!","സുപ്രഭാതം, ടീച്ചർ!"],[1,"Open your books, please.","പുസ്തകം തുറക്കൂ."],[0,"Yes, teacher. Which page?","ശരി ടീച്ചർ. ഏത് പേജ്?"]]},
+{n:"സ്കൂൾ ഗേറ്റ്",e:"🎒",c:"#0077b6",p:["👦","👨‍🏫"],l:[[1,"Welcome to school, Anu!","അനൂ, സ്കൂളിലേക്ക് സ്വാഗതം!"],[0,"Thank you, sir.","നന്ദി സാർ."],[1,"Where is your bag?","നിന്റെ ബാഗ് എവിടെ?"],[0,"It is here, sir.","ഇതാ ഇവിടെയുണ്ട് സാർ."]]},
+{n:"കടയിൽ",e:"🛒",c:"#f77f00",p:["👧","👨‍💼"],l:[[1,"Hello! What do you want?","ഹലോ! എന്താണ് വേണ്ടത്?"],[0,"I want a pencil, please.","എനിക്ക് ഒരു പെൻസിൽ വേണം."],[1,"Here you are. Ten rupees.","ഇതാ. പത്തു രൂപ."],[0,"Thank you. Here is the money.","നന്ദി. ഇതാ പൈസ."]]},
+{n:"അങ്ങാടി",e:"🥬",c:"#06a77d",p:["👦","🧑‍🌾"],l:[[1,"Fresh mangoes! Do you want some?","പുതിയ മാങ്ങ! വേണോ?"],[0,"Yes, how much is one kilo?","വേണം, ഒരു കിലോയ്ക്ക് എത്രയാണ്?"],[1,"Eighty rupees only.","എൺപത് രൂപ മാത്രം."],[0,"Give me one kilo, please.","ഒരു കിലോ തരൂ."]]},
+{n:"വീട്ടിൽ",e:"🏠",c:"#d62828",p:["👦","👩"],l:[[1,"Wake up, dear. It is seven o clock.","എഴുന്നേൽക്കൂ മോനേ. ഏഴു മണിയായി."],[0,"Good morning, Amma!","സുപ്രഭാതം അമ്മേ!"],[1,"Brush your teeth and have breakfast.","പല്ലു തേച്ച് പ്രഭാതഭക്ഷണം കഴിക്കൂ."],[0,"Yes, Amma. I am coming.","ശരി അമ്മേ. ഞാൻ വരുന്നു."]]},
+{n:"കൂട്ടുകാർ",e:"🤝",c:"#7b2ff7",p:["👧","🧒"],l:[[1,"Hi! What is your name?","ഹായ്! നിന്റെ പേരെന്താണ്?"],[0,"Hi! My name is Anu.","ഹായ്! എന്റെ പേര് അനു."],[1,"Can we be friends?","നമുക്ക് കൂട്ടുകാരാകാമോ?"],[0,"Yes, of course. Let us play!","തീർച്ചയായും. നമുക്ക് കളിക്കാം!"]]},
+{n:"ബസിൽ",e:"🚌",c:"#3a86ff",p:["👦","🧑‍✈️"],l:[[1,"Where are you going?","നീ എവിടേക്കാണ് പോകുന്നത്?"],[0,"I am going to school.","ഞാൻ സ്കൂളിലേക്ക് പോകുന്നു."],[1,"Take the ticket, please.","ടിക്കറ്റ് എടുക്കൂ."],[0,"Thank you, conductor.","നന്ദി കണ്ടക്ടർ."]]},
+{n:"കളിസ്ഥലം",e:"⚽",c:"#38b000",p:["👧","🧒"],l:[[1,"Let us play football!","നമുക്ക് ഫുട്ബോൾ കളിക്കാം!"],[0,"Great idea! I will bring the ball.","നല്ല ആശയം! ഞാൻ പന്ത് കൊണ്ടുവരാം."],[1,"You are very fast!","നീ വളരെ വേഗമുള്ളവനാണ്!"],[0,"Thank you! You are good too.","നന്ദി! നീയും നല്ലവനാണ്."]]}];
+var EX=[
+[["What is this?","ഇത് എന്താണ്?","It is a book.","ഇതൊരു പുസ്തകമാണ്."],["Read the story, please.","കഥ വായിക്കൂ.","Yes, teacher. I can read.","ശരി ടീച്ചർ. എനിക്ക് വായിക്കാം."],["Do you have a question?","ഏതെങ്കിലും സംശയമുണ്ടോ?","May I drink water, teacher?","ടീച്ചർ, ഞാൻ വെള്ളം കുടിക്കട്ടെ?"],["Very good! Sit down.","വളരെ നന്നായി! ഇരിക്കൂ.","Thank you, teacher.","നന്ദി ടീച്ചർ."]],
+[["Which class are you in?","നീ ഏത് ക്ലാസിലാണ്?","I am in class two.","ഞാൻ രണ്ടാം ക്ലാസിലാണ്."],["Who is your teacher?","നിന്റെ ടീച്ചർ ആരാണ്?","My teacher is Reena madam.","എന്റെ ടീച്ചർ രീന മാഡമാണ്."],["Do not run in the corridor.","വരാന്തയിൽ ഓടരുത്.","Sorry, sir. I will walk.","ക്ഷമിക്കണം സാർ. ഞാൻ നടന്നോളാം."],["The bell is ringing. Go to class.","ബെല്ലടിക്കുന്നു. ക്ലാസിലേക്ക് പോകൂ.","Yes, sir. Goodbye!","ശരി സാർ. ടാറ്റാ!"]],
+[["What colour do you want?","ഏത് നിറമാണ് വേണ്ടത്?","I want a red one.","എനിക്ക് ചുവപ്പ് മതി."],["Do you want a bag also?","ബാഗും വേണോ?","No, thank you. I have a bag.","വേണ്ട നന്ദി. എന്റെ കയ്യിൽ ബാഗുണ്ട്."],["How many pencils?","എത്ര പെൻസിൽ?","Two pencils, please.","രണ്ട് പെൻസിൽ തരൂ."],["Come again!","വീണ്ടും വരൂ!","Bye bye! See you tomorrow.","ടാറ്റാ! നാളെ കാണാം."]],
+[["Do you want bananas also?","വാഴപ്പഴവും വേണോ?","Yes, half a kilo, please.","വേണം, അര കിലോ തരൂ."],["These tomatoes are very fresh.","ഈ തക്കാളി വളരെ പുതിയതാണ്.","How much are the tomatoes?","തക്കാളിക്ക് എത്രയാണ്?"],["Forty rupees a kilo.","കിലോയ്ക്ക് നാല്പത് രൂപ.","That is costly. Reduce a little.","വില കൂടുതലാണ്. കുറച്ച് കുറയ്ക്കൂ."],["Okay, thirty five rupees.","ശരി, മുപ്പത്തഞ്ച് രൂപ.","Thank you, uncle.","നന്ദി അങ്കിൾ."]],
+[["Have you washed your hands?","കൈ കഴുകിയോ?","Yes, Amma. I washed my hands.","ശരി അമ്മേ. ഞാൻ കൈ കഴുകി."],["Eat your food, dear.","മോനേ, ഭക്ഷണം കഴിക്കൂ.","The rice is very tasty, Amma.","ചോറ് വളരെ രുചിയുണ്ട് അമ്മേ."],["Have you done your homework?","ഹോംവർക്ക് ചെയ്തോ?","Yes, I have done it.","ചെയ്തു, ഞാൻ ചെയ്തു കഴിഞ്ഞു."],["It is time to sleep. Good night.","ഉറങ്ങാൻ സമയമായി. ശുഭരാത്രി.","Good night, Amma. Sweet dreams.","ശുഭരാത്രി അമ്മേ."]],
+[["Where do you live?","നീ എവിടെയാണ് താമസിക്കുന്നത്?","I live near the school.","ഞാൻ സ്കൂളിനടുത്താണ് താമസിക്കുന്നത്."],["What do you like to eat?","നിനക്ക് എന്ത് കഴിക്കാനാണ് ഇഷ്ടം?","I like mango and banana.","എനിക്ക് മാങ്ങയും വാഴപ്പഴവും ഇഷ്ടമാണ്."],["Can I share your pencil?","നിന്റെ പെൻസിൽ ഞാൻ ഉപയോഗിക്കട്ടെ?","Sure. Here you are.","തീർച്ചയായും. ഇതാ."],["See you tomorrow, my friend.","നാളെ കാണാം കൂട്ടുകാരാ.","Bye! Take care.","ടാറ്റാ! സൂക്ഷിക്കണേ."]],
+[["Please sit down.","ഇരിക്കൂ.","Thank you. May I sit here?","നന്ദി. ഇവിടെ ഇരിക്കട്ടെ?"],["Which stop do you want?","ഏത് സ്റ്റോപ്പിലാണ് ഇറങ്ങേണ്ടത്?","School stop, please.","സ്കൂൾ സ്റ്റോപ്പിൽ."],["Hold the rod tightly.","കമ്പിയിൽ മുറുകെ പിടിക്കൂ.","Yes, uncle. I am holding it.","ശരി അങ്കിൾ. ഞാൻ പിടിച്ചിട്ടുണ്ട്."],["Your stop has come.","നിന്റെ സ്റ്റോപ്പ് എത്തി.","Thank you. Bye bye!","നന്ദി. ടാറ്റാ!"]],
+[["Which game do you like?","നിനക്ക് ഏത് കളിയാണ് ഇഷ്ടം?","I like cricket.","എനിക്ക് ക്രിക്കറ്റ് ഇഷ്ടമാണ്."],["Throw the ball to me.","പന്ത് എനിക്ക് എറിയൂ.","Catch it! One, two, three!","പിടിച്ചോ! ഒന്ന്, രണ്ട്, മൂന്ന്!"],["Who won the game?","ആരാണ് ജയിച്ചത്?","Our team won!","ഞങ്ങളുടെ ടീം ജയിച്ചു!"],["Let us drink some water.","നമുക്ക് കുറച്ച് വെള്ളം കുടിക്കാം.","Yes, I am very thirsty.","ശരി, എനിക്ക് നല്ല ദാഹമുണ്ട്."]]];
+EX.forEach(function(p,i){p.forEach(function(x){SC[i].l.push([1,x[0],x[1]],[0,x[2],x[3]])})});
+var cs=0,rk=0,rn=0;
+function bub(l,id){return '<div class="bb '+(l[0]?'':'r')+'" id="b'+id+'" onclick="say(SC[cs].l['+id+'][1])">'+(l[0]?SC[cs].p[1]:SC[cs].p[0])+' '+l[1]+'<small>'+l[2]+'</small></div>'}
+function sayCb(t,cb){var d=0;function g(){if(!d){d=1;cb()}}try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.8;u.pitch=1.15;u.onend=g;speechSynthesis.speak(u)}catch(e){}setTimeout(g,t.length*110+1500)}
+function talk(){var h=bar("💬 എവിടെ സംസാരിക്കാം?")+'<div class="grid">';SC.forEach(function(s,i){h+='<button class="menu" style="background:'+s.c+'" onclick="scene('+i+')"><span>'+s.e+'</span>'+s.n+'</button>'});$(h+'</div>')}
+function scene(i){cs=i;var s=SC[i];$(bar(s.e+" "+s.n)+'<div class="sc" style="background:'+s.c+'"><span class="ch">'+s.p[0]+'</span> <span class="ch" style="animation-delay:.5s">'+s.p[1]+'</span><div style="font-size:34px">'+s.e+'</div></div><div class="grid"><button class="menu" style="background:#06a77d" onclick="watch()"><span>👂</span>കേൾക്കൂ</button><button class="menu" style="background:#f77f00" onclick="rp()"><span>🎭</span>റോൾ പ്ലേ</button><button class="menu" style="background:#7b2ff7" onclick="rc()"><span>🧩</span>ശരിയായ മറുപടി</button></div><div style="text-align:center;margin-top:14px"><button class="btn" onclick="talk()">↩ മറ്റൊരു സ്ഥലം</button></div>')}
+function watch(){var s=SC[cs],h=bar(s.e+" "+s.n)+'<div id="dl">';s.l.forEach(function(l,k){h+=bub(l,k)});$(h+'</div><div style="text-align:center"><button class="btn" onclick="play(0)">▶ തുടങ്ങൂ</button> <button class="btn" onclick="scene(cs)">↩</button></div>')}
+function play(k){var s=SC[cs];if(k>=s.l.length){good();return}var e=document.getElementById("b"+k);if(!e)return;document.querySelectorAll(".bb").forEach(function(b){b.classList.remove("hl")});e.classList.add("hl");sayCb(s.l[k][1],function(){setTimeout(function(){play(k+1)},300)})}
+function rp(){rk=0;rs()}
+function rs(){var s=SC[cs];if(rk>=s.l.length)return fin("🎭");var l=s.l[rk],h=bar("🎭 "+s.n);for(var j=0;j<rk;j++)h+=bub(s.l[j],j);
+if(l[0]){$(h+bub(l,rk));var e=document.getElementById("b"+rk);if(e)e.classList.add("hl");sayCb(l[1],function(){rk++;rs()})}
+else{$(h+'<div class="big"><h3>'+s.p[0]+' നിന്റെ ഊഴം! ഇങ്ങനെ പറയൂ:</h3><b style="font-size:22px">'+l[1]+'</b><br><small>'+l[2]+'</small><br><br><button class="btn" onclick="say(SC[cs].l[rk][1])">🔊</button> <button class="btn" onclick="rm()">🎤 പറയൂ</button> <button class="btn" onclick="rk++;rs()">✔ പറഞ്ഞു</button></div><div class="msg" id="rr"></div>')}}
+function rm(){var R=window.SpeechRecognition||window.webkitSpeechRecognition,r=document.getElementById("rr");if(!R){r.textContent="മൈക്ക് ഇല്ല – ഉറക്കെ പറഞ്ഞിട്ട് ✔ അമർത്തൂ";return}var c=new R();c.lang="en-US";r.textContent="🎤 പറയൂ...";c.onresult=function(e){var t=e.results[0][0].transcript.toLowerCase().replace(/[^a-z ]/g,""),w=SC[cs].l[rk][1].toLowerCase().replace(/[^a-z ]/g,"").split(" ").filter(Boolean),n=0;w.forEach(function(x){if(t.indexOf(x)>-1)n++});if(n/w.length>=.6){r.textContent="🌟 സൂപ്പർ!";good();setTimeout(function(){rk++;rs()},900)}else{r.textContent="🙂 വീണ്ടും ശ്രമിക്കൂ: "+t;bad()}};c.onerror=function(){r.textContent="മൈക്ക് അനുവദിക്കൂ"};c.start()}
+function rc(){rn=0;rq()}
+function rq(){var s=SC[cs];if(rn>=SC[cs].l.length/2)return fin("🧩");var q=s.l[rn*2],a=s.l[rn*2+1],o=[];SC.forEach(function(x,i){if(i!=cs)o.push(x.l[1][1])});o=shuf(shuf(o).slice(0,2).concat([a[1]]));
+var h=bar("🧩 "+s.n)+bub(q,rn*2)+'<div class="msg">'+s.p[0]+' ഏതാണ് ശരിയായ മറുപടി?</div><div class="opts" style="grid-template-columns:1fr">';o.forEach(function(x){h+='<button class="opt" style="font-size:18px" onclick="ra(this,'+(x==a[1])+')">'+x+'</button>'});$(h+'</div>');say(q[1])}
+function ra(b,ok){if(ok){b.classList.add("ok");good();say(b.textContent);rn++;setTimeout(rq,1300)}else{b.classList.add("no");bad()}}
+home();
+</script></body></html>
